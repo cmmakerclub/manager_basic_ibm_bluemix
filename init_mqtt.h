@@ -12,7 +12,7 @@ extern int MQTT_PORT;
 extern int PUBLISH_EVERY;
 
 extern void register_publish_hooks();
-extern void register_publish_hooks();
+extern void register_receive_hooks();
 
 // MQTT INITIALIZER
 void init_mqtt()
