@@ -1,7 +1,6 @@
 #include <MqttConnector.h>
 #include <DHT.h>
 
-extern int pin_state;
 extern MqttConnector* mqtt;
 static void read_dht();
 float t_dht, h_dht = 0;
@@ -30,8 +29,6 @@ void register_publish_hooks() {
     data["millis"] = millis();
     data["temp"] = t_dht;
     data["humid"] = h_dht;
-    data["state"] = pin_state;
-    Serial.println("READY");
   }, PUBLISH_EVERY);
 
   mqtt->on_after_prepare_data([&](JsonObject * root) {
