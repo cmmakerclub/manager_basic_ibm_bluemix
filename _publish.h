@@ -1,16 +1,16 @@
 #include <MqttConnector.h>
 #include <DHT.h>
 
-#define DEVICE_NAME      "plug999"
-#define DEVICE_NAME_SIZE 20
-
-DHT dht(12, DHT22);
-
 extern int pin_state;
 extern MqttConnector* mqtt;
-
 static void read_dht();
 float t_dht, h_dht = 0;
+DHT dht(12, DHT22);
+
+
+#define DEVICE_NAME      "nat001"
+#define DEVICE_NAME_SIZE 20
+
 char myName[DEVICE_NAME_SIZE];
 
 void register_publish_hooks() {
