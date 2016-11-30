@@ -10,8 +10,8 @@ CMMC_Manager manager(0, LED_BUILTIN);
 
 /* WIFI INFO */
 #ifndef WIFI_SSID
-  #define WIFI_SSID        "DEVICES-AP"
-  #define WIFI_PASSWORD    "devicenetwork"
+#define WIFI_SSID        "DEVICES-AP"
+#define WIFI_PASSWORD    "devicenetwork"
 #endif
 
 String MQTT_HOST        = "mqtt.cmmc.io";
@@ -36,15 +36,14 @@ void init_hardware()
 }
 
 void init_wifi() {
+  //  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  //  while(WiFi.status() != WL_CONNECTED) {
+  //    Serial.printf ("Connecting to %s:%s\r\n", WIFI_SSID, WIFI_PASSWORD);
+  //    delay(300);
+  //  }
   manager.start();
-//  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-//  while(WiFi.status() != WL_CONNECTED) {
-//    Serial.printf ("Connecting to %s:%s\r\n", WIFI_SSID, WIFI_PASSWORD);
-//    delay(300);
-//  }
-//
-//  Serial.println("WiFi Connected.");
-//  digitalWrite(LED_BUILTIN, HIGH);
+  Serial.println("WiFi Connected.");
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void setup()
