@@ -1,11 +1,14 @@
 #include <Arduino.h>
-#include <CMMC_Manager.h>
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
+
+#include <CMMC_Manager.h>
 #include <MqttConnector.h>
+
 #include "init_mqtt.h"
 #include "_publish.h"
 #include "_receive.h"
+
 CMMC_Manager manager(0, LED_BUILTIN);
 
 /* WIFI INFO */
