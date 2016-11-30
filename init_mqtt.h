@@ -4,7 +4,7 @@ extern MqttConnector* mqtt;
 
 extern String MQTT_HOST;
 extern String MQTT_USERNAME;
-extern String MQTT_PASSWORD;
+extern String MQTT_PASSWORD; 
 extern String MQTT_CLIENT_ID;
 extern String MQTT_PREFIX;
 

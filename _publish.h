@@ -1,19 +1,22 @@
 #include <MqttConnector.h>
 #include <DHT.h>
-#define DHTPIN 12     // what digital pin we're connected to
-#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
-DHT dht(DHTPIN, DHTTYPE);
 
-extern String DEVICE_NAME;
+#define DEVICE_NAME      "plug999"
+#define DEVICE_NAME_SIZE 20
+
+DHT dht(12, DHT22);
+
 extern int pin_state;
 extern MqttConnector* mqtt;
 
 static void read_dht();
 float t_dht, h_dht = 0;
+char myName[DEVICE_NAME_SIZE];
 
 void register_publish_hooks() {
   mqtt->on_prepare_data_once([&](void) {
     dht.begin();
+    strcpy(myName, DEVICE_NAME);
   });
 
   mqtt->on_before_prepare_data([&](void) {
@@ -23,12 +26,12 @@ void register_publish_hooks() {
   mqtt->on_prepare_data([&](JsonObject * root) {
     JsonObject& data = (*root)["d"];
     JsonObject& info = (*root)["info"];
-    data["myName"] = DEVICE_NAME;
+    data["myName"] = myName;
     data["millis"] = millis();
     data["temp"] = t_dht;
     data["humid"] = h_dht;
     data["state"] = pin_state;
-  });
+  }, PUBLISH_EVERY);
 
   mqtt->on_after_prepare_data([&](JsonObject * root) {
     /**************
