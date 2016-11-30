@@ -14,8 +14,7 @@ void register_receive_hooks() {
     pinMode(15, OUTPUT);
   });
 
-  mqtt->on_message([&](const MQTT::Publish & pub) {
-  });
+  mqtt->on_message([&](const MQTT::Publish & pub) { });
 
   mqtt->on_after_message_arrived([&](String topic, String cmd, String payload) {
     Serial.printf("topic: %s\r\n", topic.c_str());
