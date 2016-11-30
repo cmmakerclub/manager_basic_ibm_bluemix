@@ -6,10 +6,7 @@ extern MqttConnector* mqtt;
 extern char myName[20];
 
 void register_receive_hooks() {
-  mqtt->on_subscribe([&](MQTT::Subscribe * sub) -> void {
-    sub->add_topic(MQTT_PREFIX + "/" + myName + "/$/+");
-    sub->add_topic(MQTT_PREFIX + "/" + MQTT_CLIENT_ID + "/$/+");
-  });
+  mqtt->on_subscribe([&](MQTT::Subscribe * sub) -> void { });
 
   mqtt->on_before_message_arrived_once([&](void) {
     pinMode(15, OUTPUT);

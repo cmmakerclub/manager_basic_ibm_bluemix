@@ -28,7 +28,7 @@ void init_mqtt()
     MQTT_CLIENT_ID = ESP.getChipId();
     config->clientId  = MQTT_CLIENT_ID;
     config->channelPrefix = MQTT_PREFIX;
-    config->enableLastWill = true;
+    config->enableLastWill = false;
     config->retainPublishMessage = false;
     /*
         config->mode
@@ -38,7 +38,7 @@ void init_mqtt()
         | MODE_SUB_ONLY   |
         ===================
     */
-    config->mode = MODE_BOTH;
+    config->mode = MODE_PUB_ONLY;
     config->firstCapChannel = false;
 
     config->username = String(MQTT_USERNAME);
@@ -46,13 +46,17 @@ void init_mqtt()
 
     // FORMAT
     // d:quickstart:<type-id>:<device-id>
-    //config->clientId  = String("d:quickstart:esp8266meetup:") + macAddr;
-    //config->topicPub  = String("iot-2/evt/status/fmt/json");
+    String macAddr = WiFi.macAddress();
+    macAddr.replace(":", "");
+    macAddr.toLowerCase();
+    config->clientId  = String("d:quickstart:esp8266meetup:") + macAddr;
+    config->topicPub  = String("iot-2/evt/status/fmt/json");
   });
 
   mqtt->on_after_prepare_configuration([&](MqttConnector::Config config) -> void {
     Serial.printf("[USER] HOST = %s\r\n", config.mqttHost.c_str());
     Serial.printf("[USER] PORT = %d\r\n", config.mqttPort);
+    Serial.printf("[USER] CLIENT ID = %s\r\n", config.clientId.c_str());
     Serial.printf("[USER] PUB  = %s\r\n", config.topicPub.c_str());
     Serial.printf("[USER] SUB  = %s\r\n", config.topicSub.c_str());
   });

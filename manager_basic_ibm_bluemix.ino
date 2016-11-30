@@ -17,14 +17,14 @@ CMMC_Manager manager(0, LED_BUILTIN);
 #define WIFI_PASSWORD    "devicenetwork"
 #endif
 
-String MQTT_HOST        = "mqtt.cmmc.io";
+String MQTT_HOST        = "quickstart.messaging.internetofthings.ibmcloud.com";
 String MQTT_USERNAME    = "";
 String MQTT_PASSWORD    = "";
 String MQTT_CLIENT_ID   = "";
-String MQTT_PREFIX      = "CMMC";
+String MQTT_PREFIX      = "";
 int    MQTT_PORT        = 1883;
 
-int PUBLISH_EVERY       = 1000;
+int PUBLISH_EVERY       = 2000;
 
 MqttConnector *mqtt;
 

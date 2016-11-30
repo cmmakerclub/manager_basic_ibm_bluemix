@@ -31,9 +31,11 @@ void register_publish_hooks() {
     data["temp"] = t_dht;
     data["humid"] = h_dht;
     data["state"] = pin_state;
+    Serial.println("READY");
   }, PUBLISH_EVERY);
 
   mqtt->on_after_prepare_data([&](JsonObject * root) {
+    root->remove("info");
     /**************
       JsonObject& data = (*root)["d"];
       data.remove("version");
