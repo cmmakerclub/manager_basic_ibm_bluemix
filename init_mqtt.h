@@ -58,7 +58,6 @@ void init_mqtt()
     Serial.printf("[USER] PORT = %d\r\n", config.mqttPort);
     Serial.printf("[USER] CLIENT ID = %s\r\n", config.clientId.c_str());
     Serial.printf("[USER] PUB  = %s\r\n", config.topicPub.c_str());
-    Serial.printf("[USER] SUB  = %s\r\n", config.topicSub.c_str());
   });
 
   register_publish_hooks();

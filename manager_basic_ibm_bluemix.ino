@@ -2,7 +2,6 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
 
-#include <CMMC_Manager.h>
 #include <MqttConnector.h>
 
 #include "init_mqtt.h"
